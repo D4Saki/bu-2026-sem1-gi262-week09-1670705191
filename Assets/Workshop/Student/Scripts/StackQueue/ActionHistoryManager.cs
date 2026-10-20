@@ -76,12 +76,12 @@ namespace Solution
             // 1. prepare the Queue with the sequence of moves
             Vector2[] moves =
             {
-            Vector2.right,
-            Vector2.right,
-            Vector2.up,
-            Vector2.left,
-            Vector2.up,
-            Vector2.down,
+                Vector2.right,
+                Vector2.right,
+                Vector2.up,
+                Vector2.left,
+                Vector2.up,
+                Vector2.down,
             };
             foreach (Vector2 move in moves)
             {
