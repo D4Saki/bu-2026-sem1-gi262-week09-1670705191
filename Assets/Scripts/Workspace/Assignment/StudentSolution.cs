@@ -15,12 +15,38 @@ namespace Assignment
 
         public (int Count, int Popped, int Peek, int CountAfterPeek) LCT01_StackSyntax()
         {
-            throw new NotImplementedException();
+            Stack<int> stack = new Stack<int>();
+
+            stack.Push(1);
+            stack.Push(2);
+            stack.Push(3);
+
+            int count = stack.Count;
+
+            int popped = stack.Pop();
+
+            int peek = stack.Peek();
+            int countAfterPeek = stack.Count;
+
+            return (count, popped, peek, countAfterPeek);
         }
 
         public (int Count, int Dequeued, int Peek, int CountAfterPeek) LCT02_QueueSyntax()
         {
-            throw new NotImplementedException();
+            Queue<int> queue = new Queue<int>();
+
+            queue.Enqueue(1);
+            queue.Enqueue(2);
+            queue.Enqueue(3);
+
+            int count = queue.Count;
+
+            int dequeued = queue.Dequeue();
+
+            int peek = queue.Peek();
+            int countAfterPeek = queue.Count;
+
+            return (count, dequeued, peek, countAfterPeek);
         }
 
         public string[] LCT03_ActionStack()
@@ -28,7 +54,20 @@ namespace Assignment
             Action action1 = new Action { Name = "Action 1" };
             Action action2 = new Action { Name = "Action 2" };
             Action action3 = new Action { Name = "Action 3" };
-            throw new NotImplementedException();
+            Stack<Action> actionStack = new Stack<Action>();
+
+            actionStack.Push(action1);
+            actionStack.Push(action2);
+            actionStack.Push(action3);
+
+            List<string> result = new List<string>();
+
+            while (actionStack.Count > 0)
+            {
+                result.Add(actionStack.Pop().Name);
+            }
+
+            return result.ToArray();
         }
 
         public string[] LCT04_ActionQueue()
@@ -36,7 +75,20 @@ namespace Assignment
             Action action1 = new Action { Name = "Action 1" };
             Action action2 = new Action { Name = "Action 2" };
             Action action3 = new Action { Name = "Action 3" };
-            throw new NotImplementedException();
+            Queue<Action> actionQueue = new Queue<Action>();
+
+            actionQueue.Enqueue(action1);
+            actionQueue.Enqueue(action2);
+            actionQueue.Enqueue(action3);
+
+            List<string> result = new List<string>();
+
+            while (actionQueue.Count > 0)
+            {
+                result.Add(actionQueue.Dequeue().Name);
+            }
+
+            return result.ToArray();
         }
 
         #endregion
@@ -45,12 +97,28 @@ namespace Assignment
 
         public string ASN01_ReverseString(string str)
         {
-            throw new NotImplementedException();
+            Stack<char> stack = new Stack<char>();
+
+            foreach (char c in str)
+            {
+                stack.Push(c);
+            }
+
+            char[] reversedChars = new char[str.Length];
+            int index = 0;
+            while (stack.Count > 0)
+            {
+                reversedChars[index++] = stack.Pop();
+            }
+
+            return new string(reversedChars);
         }
 
         public bool ASN02_StackPalindrome(string str)
         {
-            throw new NotImplementedException();
+            string reversed = ASN01_ReverseString(str);
+
+            return str.Equals(reversed);
         }
 
         #endregion
@@ -59,7 +127,30 @@ namespace Assignment
 
         public bool EX01_ParenthesesChecker(string str)
         {
-            throw new NotImplementedException();
+            Stack<char> stack = new Stack<char>();
+
+            foreach (char c in str)
+            {
+                if (c == '(' || c == '[' || c == '{')
+                {
+                    stack.Push(c);
+                }
+                else if (c == ')' || c == ']' || c == '}')
+                {
+                    if (stack.Count == 0) return false;
+
+                    char top = stack.Pop();
+
+                    if ((c == ')' && top != '(') ||
+                        (c == ']' && top != '[') ||
+                        (c == '}' && top != '{'))
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return stack.Count == 0;
         }
 
         #endregion
